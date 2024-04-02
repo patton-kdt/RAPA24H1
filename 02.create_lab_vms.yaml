@@ -40,8 +40,8 @@
           iso_path: '{{ item.iso_filename }}'
       loop:
       - { vmname: "{{ student_ID + '-Router'}}", guest_id: debian10_64Guest, cpus: 2, nested: false, memory: 2048,  disk_gb: 10, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
-      - { vmname: "{{ student_ID + '-ESXi-01'}}", guest_id: vmkernel8, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
-      - { vmname: "{{ student_ID + '-ESXi-02'}}", guest_id: vmkernel8, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
-      - { vmname: "{{ student_ID + '-ESXi-03'}}", guest_id: vmkernel8, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
+      - { vmname: "{{ student_ID + '-ESXi-01'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
+      - { vmname: "{{ student_ID + '-ESXi-02'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
+      - { vmname: "{{ student_ID + '-ESXi-03'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
       delegate_to: localhost
       register: deploy_vm
