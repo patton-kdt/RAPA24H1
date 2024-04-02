@@ -5,7 +5,7 @@
   vars_files: ./vars.yaml
 
   tasks: 
-    - name: Create Lab VMs
+    - name: Create Lab VM - Router
       community.vmware.vmware_guest:
         hostname: "{{ vcenter_hostname }}"
         username: "{{ vcenter_username }}"
@@ -40,8 +40,49 @@
           iso_path: '{{ item.iso_filename }}'
       loop:
       - { vmname: "{{ student_ID + '-Router'}}", guest_id: debian10_64Guest, cpus: 2, nested: false, memory: 2048,  disk_gb: 10, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
-      - { vmname: "{{ student_ID + '-ESXi-01'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
-      - { vmname: "{{ student_ID + '-ESXi-02'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
-      - { vmname: "{{ student_ID + '-ESXi-03'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'vyos-1.5.iso' }}" }
+      delegate_to: localhost
+      register: deploy_vm
+
+    - name: Create Lab VM - ESXi
+      community.vmware.vmware_guest:
+        hostname: "{{ vcenter_hostname }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: 'false'
+        datacenter: '{{datacenter_name}}'
+        folder: '{{ folder_prefix + student_ID }}'
+        name: '{{ item.vmname }}'
+        state: poweredoff
+        guest_id: '{{ item.guest_id }}'
+        esxi_hostname: "{{ esxi_hostname }}"
+        hardware:
+          version: 20
+          num_cpus: '{{ item.cpus }}'
+          nested_virt: '{{ item.nested }}'
+          memory_mb: '{{ item.memory }}'
+          scsi: paravirtual
+        disk:
+        - size_gb: '{{ item.disk_gb }}'
+          type: thin
+          datastore: '{{ datastore_name }}'
+        networks:
+        - name: '{{ private_net }}'
+          device_type: vmxnet3
+        - name: '{{ private_net }}'
+          device_type: vmxnet3
+        - name: '{{ private_net }}'
+          device_type: vmxnet3
+        - name: '{{ private_net }}'
+          device_type: vmxnet3
+        cdrom:
+        - controller_number: 0
+          unit_number: 0
+          state: present
+          type: iso
+          iso_path: '{{ item.iso_filename }}'
+      loop:
+      - { vmname: "{{ student_ID + '-ESXi-01'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'VMvisor-8.0U2b.iso' }}" }
+      - { vmname: "{{ student_ID + '-ESXi-02'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'VMvisor-8.0U2b.iso' }}" }
+      - { vmname: "{{ student_ID + '-ESXi-03'}}", guest_id: vmkernel8Guest, cpus: 4, nested: true, memory: 8192,  disk_gb: 200, iso_filename : "{{ iso_folder + 'VMvisor-8.0U2b.iso' }}" }
       delegate_to: localhost
       register: deploy_vm
