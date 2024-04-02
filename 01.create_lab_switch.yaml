@@ -12,7 +12,7 @@
         username: '{{ esxi_username }}'
         password: '{{ esxi_password }}'
         validate_certs: no
-        switch: '{{ studentID }}'
+        switch: '{{ student_ID }}'
         security:
           promiscuous_mode: True
           mac_changes: True
@@ -31,8 +31,8 @@
         password: "{{ vcenter_password }}"
         esxi_hostname: "{{ esxi_hostname }}"
         validate_certs: no
-        switch: "{{ studentID }}"
-        portgroup: "{{ studentID + '-Trunk' }}"
+        switch: "{{ student_ID }}"
+        portgroup: "{{ student_ID + '-Trunk' }}"
         vlan_id: 4095
       delegate_to: localhost
 
@@ -43,8 +43,8 @@
         password: "{{ vcenter_password }}"
         esxi_hostname: "{{ esxi_hostname }}"
         validate_certs: no
-        switch: "{{ studentID }}"
-        portgroup: "{{ studentID + '-SA-Mgmt' }}"
+        switch: "{{ student_ID }}"
+        portgroup: "{{ student_ID + '-SA-Mgmt' }}"
         vlan_id: 10
       delegate_to: localhost
 
@@ -55,8 +55,8 @@
         password: "{{ vcenter_password }}"
         esxi_hostname: "{{ esxi_hostname }}"
         validate_certs: no
-        switch: "{{ studentID }}"
-        portgroup: "{{ studentID + '-SA-Storage' }}"
+        switch: "{{ student_ID }}"
+        portgroup: "{{ student_ID + '-SA-Storage' }}"
         vlan_id: 11
       delegate_to: localhost
 
@@ -67,8 +67,8 @@
         password: "{{ vcenter_password }}"
         esxi_hostname: "{{ esxi_hostname }}"
         validate_certs: no
-        switch: "{{ studentID }}"
-        portgroup: "{{ studentID + '-SA-vMotion' }}"
+        switch: "{{ student_ID }}"
+        portgroup: "{{ student_ID + '-SA-vMotion' }}"
         vlan_id: 12
       delegate_to: localhost
 
@@ -79,7 +79,7 @@
         password: "{{ vcenter_password }}"
         esxi_hostname: "{{ esxi_hostname }}"
         validate_certs: no
-        switch: "{{ studentID }}"
-        portgroup: "{{ studentID + '-SA-Prod' }}"
+        switch: "{{ student_ID }}"
+        portgroup: "{{ student_ID + '-SA-Prod' }}"
         vlan_id: 13
       delegate_to: localhost
