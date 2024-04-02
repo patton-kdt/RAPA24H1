@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  vars_files: ./vars.yaml
+
+  tasks:
+  - name: Deploy IaC VM from Template
+    community.vmware.vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: "{{ item.student_ID + '-IaC' }}"
+      state: "poweredon"
+      datacenter: '{{ datacenter_name }}'
+      folder: "{{ folder_prefix + item.student_ID }}"
+      esxi_hostname: '{{ item.esxi }}'
+      datastore: "{{ item.datastore }}"
+      template: "{{ item.source }}"
+      linked_clone: true
+      snapshot_src: "Prepared"
+    loop:
+    - { student_id: S01, esxi: esxi-01.vclass.rapa, datastore: ESXi-01-HDD, source: Temp-IaC-01 }  
+    - { student_id: S02, esxi: esxi-01.vclass.rapa, datastore: ESXi-01-HDD, source: Temp-IaC-01 }  
+    - { student_id: S03, esxi: esxi-01.vclass.rapa, datastore: ESXi-01-HDD, source: Temp-IaC-01 }  
+    - { student_id: S04, esxi: esxi-01.vclass.rapa, datastore: ESXi-01-HDD, source: Temp-IaC-01 }  
+    - { student_id: S05, esxi: esxi-02.vclass.rapa, datastore: ESXi-02-HDD, source: Temp-IaC-02 }  
+    - { student_id: S06, esxi: esxi-02.vclass.rapa, datastore: ESXi-02-HDD, source: Temp-IaC-02 }  
+    - { student_id: S07, esxi: esxi-02.vclass.rapa, datastore: ESXi-02-HDD, source: Temp-IaC-02 }  
+    - { student_id: S08, esxi: esxi-02.vclass.rapa, datastore: ESXi-02-HDD, source: Temp-IaC-02 }  
+    - { student_id: S09, esxi: esxi-03.vclass.rapa, datastore: ESXi-03-HDD, source: Temp-IaC-03 }  
+    - { student_id: S10, esxi: esxi-03.vclass.rapa, datastore: ESXi-03-HDD, source: Temp-IaC-03 }  
+    - { student_id: S11, esxi: esxi-03.vclass.rapa, datastore: ESXi-03-HDD, source: Temp-IaC-03 }  
+    - { student_id: S12, esxi: esxi-03.vclass.rapa, datastore: ESXi-03-HDD, source: Temp-IaC-03 }  
+    - { student_id: S13, esxi: esxi-04.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-IaC-04 }  
+    - { student_id: S14, esxi: esxi-04.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-IaC-04 }  
+    - { student_id: S15, esxi: esxi-04.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-IaC-04 }  
+    - { student_id: S16, esxi: esxi-04.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-IaC-04 }  
+    - { student_id: S17, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-IaC-05 }  
+    - { student_id: S18, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-IaC-05 }  
+    - { student_id: S19, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-IaC-05 }  
+    - { student_id: S20, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-IaC-05 }  
+    - { student_id: S21, esxi: esxi-06.vclass.rapa, datastore: ESXi-06-HDD, source: Temp-IaC-06 }  
+    - { student_id: S00, esxi: esxi-06.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-IaC-06 }  
+    delegate_to: localhost
+ 
