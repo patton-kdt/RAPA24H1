@@ -146,6 +146,6 @@
           type: iso
           iso_path: '{{ item.iso_filename }}'
       loop:
-      - { vmname: "{{ student_ID + '-ESXi-01'}}", guest_id: freebsd13_64Guest, cpus: 4, nested: false, memory: 8192,  iso_filename : "{{ iso_folder + 'TrueNAS-13.0-U6.1.iso' }}" }
+      - { vmname: "{{ student_ID + '-Storage'}}", guest_id: freebsd13_64Guest, cpus: 4, nested: false, memory: 8192,  iso_filename : "{{ iso_folder + 'TrueNAS-13.0-U6.1.iso' }}" }
       delegate_to: localhost
       register: deploy_vm
