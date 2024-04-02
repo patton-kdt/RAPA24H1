@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  vars_files: ./vars.yaml
+
+  tasks:
+  - name: Deploy Temp Win VM from Template
+    community.vmware.vmware_guest:
+      hostname: "{{ vcenter_hostname }}"
+      username: "{{ vcenter_username }}"
+      password: "{{ vcenter_password }}"
+      validate_certs: no
+      name: "{{ item.student_ID + '-Temp_Win' }}"
+      state: "poweredoff"
+      datacenter: '{{ datacenter_name }}'
+      folder: "{{ folder_prefix + item.student_ID }}"
+      esxi_hostname: '{{ item.esxi }}'
+      datastore: "{{ item.datastore }}"
+      template: "{{ item.source }}"
+      linked_clone: true
+      snapshot_src: "Prepared"
+    loop:
+    - { student_ID: S01, esxi: esxi-01.vclass.rapa, datastore: ESXi-01-HDD, source: Temp-Win22-01 }  
+    - { student_ID: S02, esxi: esxi-01.vclass.rapa, datastore: ESXi-01-HDD, source: Temp-Win22-01 }  
+    - { student_ID: S03, esxi: esxi-01.vclass.rapa, datastore: ESXi-01-HDD, source: Temp-Win22-01 }  
+    - { student_ID: S04, esxi: esxi-01.vclass.rapa, datastore: ESXi-01-HDD, source: Temp-Win22-01 }  
+    - { student_ID: S05, esxi: esxi-02.vclass.rapa, datastore: ESXi-02-HDD, source: Temp-Win22-02 }  
+    - { student_ID: S06, esxi: esxi-02.vclass.rapa, datastore: ESXi-02-HDD, source: Temp-Win22-02 }  
+    - { student_ID: S07, esxi: esxi-02.vclass.rapa, datastore: ESXi-02-HDD, source: Temp-Win22-02 }  
+    - { student_ID: S08, esxi: esxi-02.vclass.rapa, datastore: ESXi-02-HDD, source: Temp-Win22-02 }  
+    - { student_ID: S09, esxi: esxi-03.vclass.rapa, datastore: ESXi-03-HDD, source: Temp-Win22-03 }  
+    - { student_ID: S10, esxi: esxi-03.vclass.rapa, datastore: ESXi-03-HDD, source: Temp-Win22-03 }  
+    - { student_ID: S11, esxi: esxi-03.vclass.rapa, datastore: ESXi-03-HDD, source: Temp-Win22-03 }  
+    - { student_ID: S12, esxi: esxi-03.vclass.rapa, datastore: ESXi-03-HDD, source: Temp-Win22-03 }  
+    - { student_ID: S13, esxi: esxi-04.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-Win22-04 }  
+    - { student_ID: S14, esxi: esxi-04.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-Win22-04 }  
+    - { student_ID: S15, esxi: esxi-04.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-Win22-04 }  
+    - { student_ID: S16, esxi: esxi-04.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-Win22-04 }  
+    - { student_ID: S17, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-Win22-05 }  
+    - { student_ID: S18, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-Win22-05 }  
+    - { student_ID: S19, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-Win22-05 }  
+    - { student_ID: S20, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-Win22-05 }  
+    - { student_ID: S21, esxi: esxi-06.vclass.rapa, datastore: ESXi-06-HDD, source: Temp-Win22-06 }  
+    - { student_ID: S00, esxi: esxi-06.vclass.rapa, datastore: ESXi-06-HDD, source: Temp-Win22-06 }  
+    delegate_to: localhost
+ 
