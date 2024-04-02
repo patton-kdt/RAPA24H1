@@ -1,6 +1,6 @@
 ansible_python_interpreter: /bin/python3
 
-studentID: "S00"
+student_ID: "S00"
 
 vcenter_hostname: "vcsa.vclass.rapa"
 vcenter_username: "S00@vclass.rapa"
@@ -28,3 +28,5 @@ datastore_name: "ESXi-06-HDD"
 
 dc_template_name: "Temp-Win22-06"
 dc_snapshot_name: "Prepared"
+
+iso_folder: "[ESXi-06-SSD]\ISOs\"
