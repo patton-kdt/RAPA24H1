@@ -40,6 +40,6 @@
     - { student_id: S19, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-IaC-05 }  
     - { student_id: S20, esxi: esxi-05.vclass.rapa, datastore: ESXi-05-HDD, source: Temp-IaC-05 }  
     - { student_id: S21, esxi: esxi-06.vclass.rapa, datastore: ESXi-06-HDD, source: Temp-IaC-06 }  
-    - { student_id: S00, esxi: esxi-06.vclass.rapa, datastore: ESXi-04-HDD, source: Temp-IaC-06 }  
+    - { student_id: S00, esxi: esxi-06.vclass.rapa, datastore: ESXi-06-HDD, source: Temp-IaC-06 }  
     delegate_to: localhost
  
