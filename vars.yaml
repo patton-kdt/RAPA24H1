@@ -29,4 +29,4 @@ datastore_name: "ESXi-06-HDD"
 dc_template_name: "Temp-Win22-06"
 dc_snapshot_name: "Prepared"
 
-iso_folder: "[ESXi-06-SSD]\ISOs\"
+iso_folder: '[ESXi-06-SSD]\ISOs\'
