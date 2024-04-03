@@ -51,7 +51,7 @@
           set nat source rule 10 translation address masquerade
 
           set system name-server 192.168.53.2
-          set system ntp server kr.pool.ntp.org
+          set service ntp server kr.pool.ntp.org
 
           set service ssh port 22
            
