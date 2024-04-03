@@ -22,7 +22,7 @@ esxi_username: "root"
 esxi_password: "VMware1!"
 
 public_net: "Net-192.168.53.x"
-private_net: "{{ studentID + '-Trunk' }}"
+private_net: "{{ student_ID + '-Trunk' }}"
 
 datastore_name: "ESXi-06-HDD"
 
